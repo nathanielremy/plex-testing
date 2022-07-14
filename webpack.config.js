@@ -1,5 +1,7 @@
 const { webpack } = require("webpack");
 
+
+
 module.exports = (config) => {
     config.resolve.fallback = {
       // webpack5: true,
@@ -12,7 +14,12 @@ module.exports = (config) => {
       // assert: false,
       // stream: false,
       // zlib: false,
-      // resolve: {
+      resolve: {
+        extensions: [ '.ts', '.js' ],
+        fallback: {
+          "stream": require.resolve("stream-browserify"),
+          "buffer": require.resolve("buffer")
+        }
       //   extensions: [".ts"],
       //   fallback: {
       //     crypto: "crypto-browserify",
@@ -25,7 +32,7 @@ module.exports = (config) => {
       //     url: "url/",
       //     zlib: "browserify-zlib",
       //   }
-      // },
+      },
     };
     return config;
   };
